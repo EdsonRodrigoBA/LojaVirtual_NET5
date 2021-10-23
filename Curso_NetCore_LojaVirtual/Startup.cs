@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Curso_NetCore_LojaVirtual
@@ -27,6 +29,14 @@ namespace Curso_NetCore_LojaVirtual
 
         public void ConfigureServices(IServiceCollection services)
         {
+            /**
+             * Envio de Email
+             */
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential("edsonrodrigoanalista@gmail.com", "");
+            smtpClient.EnableSsl = true;
+
 
             services.AddHttpContextAccessor();
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
