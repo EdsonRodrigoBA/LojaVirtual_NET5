@@ -1,0 +1,7 @@
+﻿body {
+}
+
+.field-validation-valid{
+    color:red;
+    display:block;
+}

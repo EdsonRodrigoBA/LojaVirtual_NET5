@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Contato";
+    Curso_NetCore_LojaVirtual.Models.Contato contato =(Curso_NetCore_LojaVirtual.Models.Contato) ViewData["contato"];
+}
+<main role="main">
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-6">
+                <h4 class="subtitle-doc">
+                    # Outros contatos
+                    <a href="#" data-html="code_desc_simple" class="showcode">[code]</a>
+                </h4>
+                <div id="code_desc_simple">
+                    <div class="box">
+                        <dl>
+                            <dt>Devolução/Garantia: </dt>
+                            <dd>devolucao@lojavirtual.com.br</dd>
+                        </dl>
+                        <dl>
+                            <dt>Televendas: </dt>
+                            <dd>(61) 4000-2000</dd>
+                        </dl>
+                        <dl>
+                            <dt>SAC:</dt>
+                            <dd>sac@lojavirtual.com.br</dd>
+                        </dl>
+                    </div> <!-- box.// -->
+                </div> <!-- code-wrap.// -->
+            </aside>
+            <aside class="col-sm-6">
+
+                <h4 class="subtitle-doc">
+                    Contato
+                </h4>
+                <div id="code_payment">
+
+                    <article class="card">
+                        <div class="card-body p-5">
+                            @if (ViewData["msg_sucesso"] != null)
+                            {
+                                <p class="alert alert-success">@ViewData["msg_sucesso"]</p>
+                            }
+                            @if (ViewData["msg_erro"] != null)
+                            {
+                                <p class="alert alert-danger">@Html.Raw(@ViewData["msg_erro"])</p>
+                            }
+
+
+                            <form role="form" method="post" action="contatoacao">
+                                <div class="form-group">
+                                    <div class="   col-md-6 offset-md-3">
+                                        <label for="nome">Nome</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="nome" id="nome" placeholder=""
+                                                   required="" value="@(contato.nome != null ? contato.nome :"" )">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="   col-md-6 offset-md-3">
+                                        <label for="email">E-mail</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-at"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="email" id="email" placeholder="" value=" @(contato.email != null ? contato.email : "")">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="   col-md-6 offset-md-3">
+                                        <label for="texto"><span class="hidden-xs">Texto</span> </label>
+                                        <div class="form-inline">
+                                            <textarea class="form-control" name="texto" value="@(contato.texto != null ? contato.texto : "")" id="texto" style="width:100%"></textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="subscribe btn btn-primary btn-block"> Enviar </button>
+                            </form>
+                        </div>
+                    </article>
+
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+
+
+</main>

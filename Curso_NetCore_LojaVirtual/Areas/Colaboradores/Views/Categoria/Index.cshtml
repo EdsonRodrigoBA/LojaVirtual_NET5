@@ -1,0 +1,63 @@
+﻿@model X.PagedList.IPagedList<Categoria>
+
+<h5>Categorias</h5>
+<a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
+@if (Model.Count > 0)
+{
+
+    @if (TempData["MSG_SUCESSO"] != null)
+    {
+        <p class="alert alert-success">@TempData["MSG_SUCESSO"]</p>
+    }
+
+    <div class="table-responsive ">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Categoria Pai</th>
+
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.nome</td>
+
+                        <td>@Html.DisplayFor(model => item.CategoriaPai.nome) </td>
+
+
+
+
+                        <td>
+                            <a asp-action="Atualizar" asp-route-id="@item.Id" class="btn btn-sm btn-secondary">Atualizar</a> ||
+                            <a asp-action="Excluir" asp-route-id="@item.Id" class="btn btn-sm btn-danger btn-excluir">Excluir</a>
+
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }), new PagedListRenderOptions
+    {
+        //PageClasses = new string[] { "page-link" },
+        //UlElementClasses = new string[] { "pagination" },
+        //LiElementClasses = new string[] { "page-item" },
+        //DisplayItemSliceAndTotal = true,
+    })
+
+}
+else
+{
+    <span> Nenhum Registro Cadastrado</span>
+}

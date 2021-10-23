@@ -1,0 +1,36 @@
+﻿@model Categoria
+<form asp-action="Cadastrar" method="post">
+    <div class="card">
+        <header class="card-header">
+            <h4 class="card-title mt-2">Cadastrar Categoria</h4>
+        </header>
+
+
+
+            <div class="col form-group">
+                <label asp-for="nome"></label>
+                <input type="text" class="form-control" asp-for="nome" placeholder="Nome">
+                <span class="text-danger" asp-validation-for="nome">  </span>
+            </div>
+            <div class="col form-group">
+                <label asp-for="slug"></label>
+                <input type="text" class="form-control" asp-for="slug" placeholder="slug">
+                <span class="text-danger" asp-validation-for="slug">  </span>
+            </div>
+
+            <div class="col form-group">
+                <label asp-for="id_categoriapai"></label>
+                <select type="text" class="form-control" asp-for="id_categoriapai" asp-items="ViewBag.Categorias"><option value="">Selecione</option></select>
+                <span class="text-danger" asp-validation-for="id_categoriapai">  </span>
+            </div>
+
+
+
+    
+            <div class="col form-group">
+                <button type="submit" class="btn btn-primary"> Salvar </button>
+                <a asp-action="Index" class="btn btn-warning"> Voltar </a>
+
+           </div>
+    </div>
+</form>
