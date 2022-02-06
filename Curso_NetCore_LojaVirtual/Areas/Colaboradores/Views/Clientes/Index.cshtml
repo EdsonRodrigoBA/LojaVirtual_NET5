@@ -1,0 +1,91 @@
+﻿@model X.PagedList.IPagedList<Clientes>
+
+<h5 style="color: red">Clientes</h5>
+
+@if (Model.Count > 0)
+{
+
+    @if (TempData["MSG_SUCESSO"] != null)
+    {
+        <p class="alert alert-success">@TempData["MSG_SUCESSO"]</p>
+        <br />
+    }
+
+    <form asp-action="Index" method="get">
+        <div class="card">
+            <header class="card-header">
+                <h4 class="card-title mt-2">Pesquisar</h4>
+            </header>
+            <div class="col form-group">
+                <label for="pesquisa">Pesquisar</label>
+                <input name="pesquisa" placeholder="Nome / E-mail" class="form-control">
+            </div>
+            <div class="col form-group">
+                <button type="submit" class="btn btn-primary"> Pesquisar </button>
+
+            </div>
+        </div>
+    </form>
+
+    <div class="table-responsive ">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Situacao</th>
+
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.id</th>
+                        <td>@item.nome</td>
+                        <td>@item.email</td>
+                        <td>@item.Situacao</td>
+
+
+
+                        @if (item.Situacao == "A")
+                        {
+                            <td>
+                                <a asp-action="Ativar_Desativar" asp-route-id="@item.id" class="btn btn-sm btn-danger btn-excluir">Desativar</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a asp-action="Ativar_Desativar" asp-route-id="@item.id" class="btn btn-sm btn-success btn-excluir">Ativar</a>
+                            </td>
+                        }
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+    var pesquisa = Context.Request.Query["pesquisa"];
+
+
+
+    @Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina = pagina, pesquisa = pesquisa }), new PagedListRenderOptions
+    {
+        //PageClasses = new string[] { "page-link" },
+        //UlElementClasses = new string[] { "pagination" },
+        //LiElementClasses = new string[] { "page-item" },
+        //DisplayItemSliceAndTotal = true,
+    })
+
+}
+else
+{
+    <span> Nenhum Registro Cadastrado</span>
+}

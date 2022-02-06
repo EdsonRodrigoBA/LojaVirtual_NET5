@@ -28,27 +28,48 @@ using Curso_NetCore_LojaVirtual.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
-using X.PagedList;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
-using X.PagedList.Web.Common;
+using Curso_NetCore_LojaVirtual.Models.Constantes;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using Curso_NetCore_LojaVirtual.Bibliotecas;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using Curso_NetCore_LojaVirtual.Bibliotecas.ProdutoAgregador;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using X.PagedList;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using X.PagedList.Web.Common;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d4596a7e362a922c4e0ffee4b7cc7002b15ff5dc", @"/Areas/Colaboradores/Views/Categoria/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"30e29ff2eed0275fd0fff9b9fcf92b7149c4a862", @"/Areas/Colaboradores/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"725e726b67dbc2aef7addaafe5c6cc09ed382cd3", @"/Areas/Colaboradores/Views/_ViewImports.cshtml")]
     public class Areas_Colaboradores_Views_Categoria_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<X.PagedList.IPagedList<Categoria>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Cadastrar", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -82,7 +103,7 @@ using X.PagedList.Mvc.Core;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<h5>Categorias</h5>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4596a7e362a922c4e0ffee4b7cc7002b15ff5dc6103", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4596a7e362a922c4e0ffee4b7cc7002b15ff5dc6884", async() => {
                 WriteLiteral("Cadastrar");
             }
             );
@@ -180,7 +201,7 @@ using X.PagedList.Mvc.Core;
 #line hidden
 #nullable disable
             WriteLiteral(" </td>\r\n\r\n\r\n\r\n\r\n                        <td>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4596a7e362a922c4e0ffee4b7cc7002b15ff5dc10329", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4596a7e362a922c4e0ffee4b7cc7002b15ff5dc11110", async() => {
                 WriteLiteral("Atualizar");
             }
             );
@@ -212,7 +233,7 @@ using X.PagedList.Mvc.Core;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral(" ||\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4596a7e362a922c4e0ffee4b7cc7002b15ff5dc12662", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4596a7e362a922c4e0ffee4b7cc7002b15ff5dc13443", async() => {
                 WriteLiteral("Excluir");
             }
             );

@@ -1,0 +1,20 @@
+﻿@model Categoria
+@{
+    var titulo = ViewContext.RouteData.Values["slug"];
+}
+
+<div class="container mt-3" id="breadcrumb">
+    
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">
+                @Model.nome
+            </h1>
+            <hr />
+        </div>
+    </div>
+
+
+</div>
+
+<vc:produtos-listagem></vc:produtos-listagem>

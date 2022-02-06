@@ -1,0 +1,38 @@
+﻿@model List<Categoria>
+
+
+@{
+
+    var todascategorias = (List<Categoria>)ViewData["todascategorias"];
+    var categoriaPai = (Categoria)ViewData["categoriapai"];
+}
+@if (Model.Any(x => x.id_categoriapai == categoriaPai.Id))
+{
+
+
+    <li class="dropdown-submenu">
+        <a class="dropdown-item" asp-action="Listagem_Por_Categoria" asp-controller="Produtos" asp-route-slug="@categoriaPai.slug">@categoriaPai.nome</a>
+        <ul class="dropdown-menu">
+            @foreach (var categoriaFilho in Model.Where(x => x.id_categoriapai == categoriaPai.Id))
+            {
+                if (Model.Any(x => x.id_categoriapai == categoriaFilho.Id))
+                {
+                    ViewData.Remove("categoriapai");
+                    @await Html.PartialAsync("~/views/shared/components/menu/_SubMenu.cshtml", new ViewDataDictionary(ViewData) { { "categoriapai", categoriaFilho } });
+
+                }
+                else
+                {
+                    <li class="dropdown-item"><a asp-action="Listagem_Por_Categoria" asp-controller="Produtos" asp-route-slug="@categoriaFilho.slug">@categoriaFilho.nome</a></li>
+
+                }
+            }
+
+        </ul>
+    </li>
+}
+else
+{
+    <li class="dropdown-item"><a asp-action="Listagem_Por_Categoria" asp-controller="Produtos" asp-route-slug="@categoriaPai.slug">@categoriaPai.nome</a></li>
+
+}

@@ -55,9 +55,48 @@ namespace Curso_NetCore_LojaVirtual.Repositorios
             return _BD.Categorias.Include(x => x.CategoriaPai).ToPagedList(numeroPagina, _iconfiguration.GetValue<int>("Numero_RegisroPaginacao"));
         }
 
+        public Categoria Get(string slug)
+        {
+            var Colaborador = _BD.Categorias.FirstOrDefault(x => x.slug == slug);
+
+            return Colaborador;
+        }
+
         public List<Categoria> GetTodos()
         {
             return _BD.Categorias.ToList();
         }
+
+        List<Categoria> categorias;
+        private List<Categoria> listCategoria_Recursiva = new List<Categoria>();
+
+        public IEnumerable<Categoria> Get_CategoriasRecursiva(Categoria categoriaPrincipal)
+        {
+            
+            if(categorias == null)
+            {
+                 categorias = GetTodos();
+            }
+           
+
+
+            var listaCategoriaFilho = categorias.Where(x => x.id_categoriapai == categoriaPrincipal.Id);
+            if (!listCategoria_Recursiva.Any(x => x.Id == categoriaPrincipal.Id))
+            {
+                listCategoria_Recursiva.Add(categoriaPrincipal);
+
+            }
+            if (categorias.Any(x => x.id_categoriapai == categoriaPrincipal.Id))
+            {
+                listCategoria_Recursiva.AddRange(listaCategoriaFilho.ToList());
+                foreach (var item in listaCategoriaFilho)
+                {
+                    Get_CategoriasRecursiva( item);
+                }
+            }
+
+            return listCategoria_Recursiva;
+        }
+
     }
 }

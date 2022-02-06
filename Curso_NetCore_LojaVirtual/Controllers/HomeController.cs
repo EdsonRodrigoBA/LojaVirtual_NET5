@@ -3,6 +3,8 @@ using Curso_NetCore_LojaVirtual.Bibliotecas.Filtros;
 using Curso_NetCore_LojaVirtual.Bibliotecas.Login;
 using Curso_NetCore_LojaVirtual.DataBase;
 using Curso_NetCore_LojaVirtual.Models;
+using Curso_NetCore_LojaVirtual.Models.Constantes;
+using Curso_NetCore_LojaVirtual.Models.ViewModels;
 using Curso_NetCore_LojaVirtual.Repositorios;
 using Curso_NetCore_LojaVirtual.Repositorios.Contratos;
 using Microsoft.AspNetCore.Http;
@@ -16,23 +18,32 @@ using System.Threading.Tasks;
 
 namespace Curso_NetCore_LojaVirtual.Controllers
 {
+    
+
     public class HomeController : Controller
     {
 
-        private readonly IClienteRepositorio _iclienteRepositorio;
+   
         private readonly INewsLettersRepositorio _NewsLettersRepositorio;
-        private readonly LoginCliente _loginCliente;
+        private readonly IprodutosRepositorio _iprodutosRepositorio;
 
+        private readonly GerenciarEnvioEmails _gerenciarEnvioEmails;
 
-        public HomeController(IClienteRepositorio iclienteRepositorio, INewsLettersRepositorio NewsLettersRepositorio, LoginCliente loginCliente)
+        public HomeController( INewsLettersRepositorio NewsLettersRepositorio, 
+            GerenciarEnvioEmails gerenciarEnvioEmails, IprodutosRepositorio iprodutosRepositorio)
         {
-            _iclienteRepositorio = iclienteRepositorio;
             this._NewsLettersRepositorio = NewsLettersRepositorio;
-            this._loginCliente = loginCliente;
+           
+            this._gerenciarEnvioEmails = gerenciarEnvioEmails;
+            this._iprodutosRepositorio = iprodutosRepositorio;
         }
         [HttpGet]
         public IActionResult Index()
         {
+            //var viewModel = new IndexViewModel()
+            //{
+            //    Produtos = _iprodutosRepositorio.Get_Paginacao_Ordencacao(pagina, pesquisa, ordenacao),                
+            //};
             return View();
         }
         [HttpPost]
@@ -49,6 +60,7 @@ namespace Curso_NetCore_LojaVirtual.Controllers
             }
             else
             {
+            
                 return View();
 
             }
@@ -77,7 +89,7 @@ namespace Curso_NetCore_LojaVirtual.Controllers
                 bool isvalid = Validator.TryValidateObject(contato, contexto, listamensagem, true);
                 if (isvalid)
                 {
-                    //ContatoEmail.EnviarConatoPorEmail(contato);
+                    _gerenciarEnvioEmails.EnviarConatoPorEmail(contato);
                 }
                 else
                 {
@@ -103,74 +115,14 @@ namespace Curso_NetCore_LojaVirtual.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public IActionResult Login([FromForm] Clientes clientes)
-        {
-            if (String.IsNullOrEmpty(clientes.email))
-            {
-                ModelState.AddModelError("email", "E-mail Invalido");
-                return View();
-
-            }
-
-            if (String.IsNullOrEmpty(clientes.senha))
-            {
-                ModelState.AddModelError("senha", "Senha Invalida");
-            }
-
-
-            var result = _iclienteRepositorio.Login(clientes.email, clientes.senha);
-            if (result != null)
-            {
-                _loginCliente.Login(result);
-
-                return RedirectToAction(nameof(Painel));
-
-            }
-            else
-            {
-                ViewData["MSG_ERRO"] = "Usuario não encontrado. Verifique o E-mail e Senha Informado.";
-                return View();
-
-            }
-        }
-
-        [ClienteAutorizacaoAtribute]
-        public IActionResult Painel()
-        {
-
-            return View();
-        }
-
-        public IActionResult CadastroCliente()
-        {
-            return new ContentResult() { Content = $"Este é o painel do cliente." };
-        }
-        [HttpPost]
-        public IActionResult CadastroCliente([FromForm] Clientes clientes)
-        {
-            if (ModelState.IsValid)
-            {
-                _iclienteRepositorio.Cadastrar(clientes);
-
-                TempData["MSG_SUCESSO"] = "Cadastro efetuado com sucesso.";
-
-                return RedirectToAction(nameof(CadastroCliente));
-            }
-            else
-            {
-                return View();
-
-            }
-        }
 
         public IActionResult CarrinhoCompras()
+        {
+            return View();
+        }
+
+        public IActionResult Categoria()
         {
             return View();
         }

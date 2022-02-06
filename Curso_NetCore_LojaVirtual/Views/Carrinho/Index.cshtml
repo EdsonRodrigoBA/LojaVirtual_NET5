@@ -1,0 +1,193 @@
+﻿@model List<ProdutosItem>
+@inject LoginCliente _usuarioLogado
+
+@{
+
+    decimal subtotal = 0;
+}
+@if (Model.Count > 0)
+{
+    <div class="container">
+        <section id="order">
+
+            <h2 class="title-doc"># Carrinho de Compras </h2>
+
+            <div class="alert alert-danger altert-carrinhocompras" role="alert" style="display:none">
+
+            </div>
+
+
+
+            <div id="code_cart">
+                <div class="card">
+                    <table class="table table-hover shopping-cart-wrap text-wrap">
+                        <thead class="text-muted">
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col" width="120">Quantity</th>
+                                <th scope="col" width="115">Price</th>
+                                <th scope="col" width="200" class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <figure class="media">
+                                            @if (item.Imagens.Count > 0)
+                                            {
+                                                <div class="img-wrap"><img src="@item.Imagens.First().caminho" class="img-thumbnail img-sm"></div>
+
+                                            }
+                                            else
+                                            {
+                                                <div class="img-wrap"><img src="~/img/image_padrao.png" class="img-thumbnail img-sm"></div>
+
+                                            }
+                                            <figcaption class="media-body">
+                                                <h6 class="title text-truncate text-wrap">@item.nome</h6>
+                                                <dl class="dlist-inline small">
+                                                    <dt>Estoque: </dt>
+                                                    <dd>@item.quantidade_carrinho</dd>
+                                                </dl>
+                                                @*<dl class="dlist-inline small">
+                                                        <dt>Color: </dt>
+                                                        <dd>Orange color</dd>
+                                                    </dl>*@
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 control-inline">
+                                                <input type="hidden" class="input_produto_id" value="@item.Id" />
+
+                                                @*<input type="hidden" class="inputProdutoId" value="@item.Id" />*@
+                                                <input type="hidden" class="inputQuantidadeEstoque" value="@item.quantidade" />
+                                                <input type="hidden" class="inputValorUnitario" value="@item.valor" />
+                                                <div class="input-group-prepend">
+                                                    <a href="#" class="btn btn-primary diminuir"> - </a>
+                                                </div>
+                                                <input type="text" style="width: 60px !important; text-align: center" readonly="readonly" class="form-control inputQuantidadeProdutoCarrinho" value="@item.quantidade_carrinho">
+                                                <div class="input-group-append">
+                                                    <a href="#" class="btn btn-primary aumentar"> + </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="price-wrap">
+                                            <var class="price">Total: @((item.quantidade_carrinho * item.valor).ToString("c"))</var>
+                                            <small class="text-muted">Valor: @item.valor.ToString("c")</small>
+                                        </div> <!-- price-wrap .// -->
+                                    </td>
+                                    <td class="text-right">
+
+                                        <a asp-action="RemoverItem" asp-controller="Carrinho" asp-route-id="@item.Id" class="btn btn-outline-danger"> × Remove</a>
+                                    </td>
+                                </tr>
+
+                                var resultsubtotal = item.quantidade_carrinho * item.valor;
+                                subtotal += resultsubtotal;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <br />
+        <br />
+        <section class="container">
+            <div class="row">
+
+                <aside class="col-md-4">
+
+                    <div id="code_desc_align">
+                        <div class="box">
+                            <h4 class="subtitle-doc">
+                                Frete
+                            </h4>
+                            <dl class="dlist-align">
+                                <dt>CEP: </dt>
+                                <dd>
+                                    <div class="input-group">
+
+
+                                        <input type="text" name="name" value="" class="form-control cep" />
+                                        <div class="input-group-append">
+                                            <a href="#" class="btn btn-outline-primary btn-calcular-frete"> OK</a>
+
+                                        </div>
+                                    </div>
+                                </dd>
+                            </dl>
+                            <br />
+                            <div class="container-frete">
+
+                            </div>
+                            @*<dl class="dlist-align">
+                                    <dt><input type="radio" name="name" value="sedex" class="form-control" /></dt>
+                                    <dd>Sedex R$ 53,00</dd>
+                                </dl>
+                                <dl class="dlist-align"><dt><input type="radio" name="name" value="pac" class="form-control" /></dt><dd>Sedex R$ 32,00</dd></dl>*@
+
+                        </div>
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+
+                    <div id="code_desc_right">
+                        <div class="box">
+                            <h4 class="subtitle-doc">
+                                Resumo
+                            </h4>
+                            <dl class="dlist-align">
+                                <dt>Subtotal:</dt>
+                                <dd class="text-right subtotalcarrinho">@subtotal.ToString("C")</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Desconto:</dt>
+                                <dd class="text-right">R$ 00,00</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Frete:</dt>
+                                <dd class="text-right valor_fretecarrinho">R$ 00,00</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Total: </dt>
+                                <dd class="text-right h5 b total_compracarrinho"> R$ 00,00</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </aside>
+                <br />
+
+                <aside class="col-md-4">
+                    @if (_usuarioLogado.ObterCliente() == null)
+                    {
+                        <div class="box">   <a asp-controller="Home" asp-action="Login" asp-area="Clientes" asp-route-returnUrl="@Url.Action("Index","Pagamento", new {area ="" })" class="btn btn-primary btnContinuar disabled">Continuar</a></div>
+
+                    }
+                    else
+                    {
+                        <div class="box">   <a asp-controller="Pagamento" asp-action="Index" class="btn btn-primary btnContinuar disabled">Continuar</a></div>
+
+                    }
+
+                </aside>
+            </div>
+        </section>
+    </div>
+}
+else
+{
+    <div class="container mt-5">
+        <div class="row">
+            <h4>Nenhum Produto adicionado ao seu carrinho.<a asp-action="Index" asp-controller="Home">Clique aqui e comece a comprar</a> </h4>
+
+        </div>
+    </div>
+
+
+}

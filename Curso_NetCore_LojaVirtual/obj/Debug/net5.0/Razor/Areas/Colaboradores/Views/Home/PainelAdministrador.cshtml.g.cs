@@ -28,27 +28,48 @@ using Curso_NetCore_LojaVirtual.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
-using X.PagedList;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
-using X.PagedList.Web.Common;
+using Curso_NetCore_LojaVirtual.Models.Constantes;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using Curso_NetCore_LojaVirtual.Bibliotecas;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using Curso_NetCore_LojaVirtual.Bibliotecas.ProdutoAgregador;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using X.PagedList;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
+using X.PagedList.Web.Common;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\edson\source\repos\Curso_NetCore_LojaVirtual\Curso_NetCore_LojaVirtual\Areas\Colaboradores\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3c82fb55ba498216d1c80bcb5a10eb07c1132da5", @"/Areas/Colaboradores/Views/Home/PainelAdministrador.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"30e29ff2eed0275fd0fff9b9fcf92b7149c4a862", @"/Areas/Colaboradores/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"725e726b67dbc2aef7addaafe5c6cc09ed382cd3", @"/Areas/Colaboradores/Views/_ViewImports.cshtml")]
     public class Areas_Colaboradores_Views_Home_PainelAdministrador : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

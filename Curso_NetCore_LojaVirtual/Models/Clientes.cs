@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,7 +27,16 @@ namespace Curso_NetCore_LojaVirtual.Models
         [Required(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_ERROR_01")]
 
         public String senha { get; set; }
+
+        [NotMapped]
+        [Compare("senha", ErrorMessage = "A senhas devem ser iguais")]
+        public String confirmPassword { get; set; }
         public DateTime Nascimento { get; set; }
+
+       
+        public String Situacao { get; set; }
+
+
 
     }
 }

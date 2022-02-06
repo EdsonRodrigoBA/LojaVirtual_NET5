@@ -16,6 +16,7 @@ namespace Curso_NetCore_LojaVirtual.Areas.Colaboradores.Controllers
         private readonly IColaboradoresRepositorio _icolaboradoresRepositorio;
         private readonly LoginColaboradores _loginColaboradores;
 
+
         public HomeController(IColaboradoresRepositorio icolaboradoresRepositorio, LoginColaboradores loginColaboradores)
         {
             this._icolaboradoresRepositorio = icolaboradoresRepositorio;
@@ -32,6 +33,7 @@ namespace Curso_NetCore_LojaVirtual.Areas.Colaboradores.Controllers
         [HttpPost]
         public IActionResult Login([FromForm] Models.Colaboradores colaboradores)
         {
+            ModelState.Remove("email");
             if (String.IsNullOrEmpty(colaboradores.email) || String.IsNullOrEmpty(colaboradores.senha))
             {
                 ModelState.AddModelError("email", "E-mail / Senha Invalidos");
@@ -56,6 +58,7 @@ namespace Curso_NetCore_LojaVirtual.Areas.Colaboradores.Controllers
             }
         }
 
+        [ValidadeHttpReference]
         public IActionResult Logout()
         {
             _loginColaboradores.Logout();

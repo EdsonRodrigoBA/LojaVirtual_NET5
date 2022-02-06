@@ -123,7 +123,19 @@
   <data name="MSG_ERROR_02" xml:space="preserve">
     <value>O campo {0} não é válido.</value>
   </data>
+  <data name="MSG_ESTOQUE_IDISPONIVEL" xml:space="preserve">
+    <value>Quantidade solicitada maior que o estoque disponivel no momento. </value>
+  </data>
+  <data name="MSG_ESTOQUE_NEGATIVO" xml:space="preserve">
+    <value>Quantidade Inválida.</value>
+  </data>
   <data name="MSG_SUCESSO" xml:space="preserve">
     <value>Soclitação realizada com sucesso.</value>
+  </data>
+  <data name="MSG_SUCESSO_EMAIL" xml:space="preserve">
+    <value>Soclitação realizada com sucesso. Enviamos uma mensagem para o E-mail Informado.</value>
+  </data>
+  <data name="MSG_TIPOFRETEENVIO" xml:space="preserve">
+    <value>Não foi selecionado o tipo de frete para envio dos produtos selecionados.</value>
   </data>
 </root>

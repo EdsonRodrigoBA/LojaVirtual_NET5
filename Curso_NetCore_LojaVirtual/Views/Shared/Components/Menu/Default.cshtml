@@ -1,0 +1,77 @@
+﻿@model List<Categoria>
+@inject LoginCliente _usuarioLogado
+<style>
+    .dropdown-menu-lg {
+        width: 900px !important;
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#"> LojaVirtual</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item @((ViewContext.RouteData.Values["action"].ToString() == "Index" && ViewContext.RouteData.Values["controller"].ToString() == "Home") ? "active" : "" )">
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            @if (Model != null && Model.Count > 0)
+            {
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorias
+                    </button>
+
+                    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+
+                        @{
+                            var categoriasPrincipai = Model.Where(x => x.id_categoriapai == null);
+                            ViewData["todascategorias"] = Model;
+                        }
+
+
+
+                        @foreach (var categoria in categoriasPrincipai)
+                        {
+                            @await Html.PartialAsync("~/views/shared/components/menu/_SubMenu.cshtml", new ViewDataDictionary(ViewData) { { "categoriapai", categoria } });
+
+                        }
+
+                    </ul>
+
+                </div>
+            }
+            <li class="nav-item">
+                <a class="nav-link" href="/home/contato"><i class="far fa-address-book"></i> Contato </a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+
+
+
+            <input class="form-control mr-sm-2" type="search" name="pesquisa" placeholder="palavra" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisa</button>
+
+            @if (_usuarioLogado.ObterCliente() != null)
+            {
+                <a class="nav-link" asp-controller="Home" asp-action="Painel" asp-area="Clientes"><i class="fas fa-user-alt"></i> @_usuarioLogado.ObterCliente().email </a>
+
+            }
+            else
+            {
+                <a class="nav-link" asp-controller="Home" asp-action="Login" asp-area="Clientes"><i class="fas fa-user-alt"></i> Login</a>
+
+            }
+
+            <a class="nav-link" asp-controller="carrinho" asp-action="index"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+        </form>
+    </div>
+</nav>

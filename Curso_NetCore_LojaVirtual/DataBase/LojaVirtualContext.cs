@@ -1,4 +1,6 @@
 ﻿using Curso_NetCore_LojaVirtual.Models;
+using Curso_NetCore_LojaVirtual.Bibliotecas.ProdutoAgregador;
+
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,10 @@ namespace Curso_NetCore_LojaVirtual.DataBase
         public DbSet<NewsLettersEmail> NewsLettersEmail { get; set; }
         public DbSet<Colaboradores> Colaboradores { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Produtos> Produtos { get; set; }
+        public DbSet<Imagens> Imagens { get; set; }
+
+
 
 
 

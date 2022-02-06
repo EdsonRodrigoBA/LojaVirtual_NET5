@@ -57,7 +57,7 @@
                                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="nome" id="nome" placeholder=""
-                                                   required="" value="@(contato.nome != null ? contato.nome :"" )">
+                                                   required="" @*value="@(contato != null ? contato.nome :"" )"*@>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-at"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="email" id="email" placeholder="" value=" @(contato.email != null ? contato.email : "")">
+                                            <input type="text" class="form-control" name="email" id="email" placeholder="" @*value=" @(contato.email != null ? contato.email : "")*@">
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                     <div class="   col-md-6 offset-md-3">
                                         <label for="texto"><span class="hidden-xs">Texto</span> </label>
                                         <div class="form-inline">
-                                            <textarea class="form-control" name="texto" value="@(contato.texto != null ? contato.texto : "")" id="texto" style="width:100%"></textarea>
+                                            <textarea class="form-control" name="texto" @*value="@(contato.texto != null ? contato.texto : "")*@" id="texto" style="width:100%"></textarea>
 
                                         </div>
                                     </div>

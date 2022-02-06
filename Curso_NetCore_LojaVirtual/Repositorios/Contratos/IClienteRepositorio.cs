@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Curso_NetCore_LojaVirtual.Repositorios.Contratos
 {
@@ -16,7 +17,7 @@ namespace Curso_NetCore_LojaVirtual.Repositorios.Contratos
 
         Clientes Get(int id);
 
-        List<Clientes> Get();
+        IPagedList<Clientes> Get(int ? pagina, String pesquisa);
 
     }
 }

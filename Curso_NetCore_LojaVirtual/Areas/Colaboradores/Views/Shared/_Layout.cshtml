@@ -10,6 +10,7 @@
     </body>
     </html>*@
 
+@inject Curso_NetCore_LojaVirtual.Bibliotecas.Login.LoginColaboradores colaboradores
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,12 +19,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="stylesheet" href="~/resources/lib/bootstrap-4.2.1-dist/css/bootstrap.min.css">
 
     <title>Dashboard Template for Bootstrap</title>
-
+    <link href="~/Css/Geral.css" rel="stylesheet" />
     <link rel="stylesheet" href="/resources/lib/dashboard/dashboard.css">
 
-    <link rel="stylesheet" href="/resources/lib/bootstrap-4.2.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/lib/caroussel/carousel.css" />
     <link rel="stylesheet" href="/resources/lib/bootstrap-ecommerce-uikit/css/ui.css" />
     <link rel="stylesheet" href="/resources/lib/bootstrap-ecommerce-uikit/css/responsive.css" media="only screen and (max-width: 1200px)" />
@@ -31,10 +32,9 @@
           crossorigin="anonymous">
     <link href="~/Css/PagedList.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    
 
     <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
 </head>
 
 <body>
@@ -67,13 +67,27 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" asp-action="Index" asp-controller="Produtos">
                                 <span data-feather="shopping-cart"></span>
                                 Produtos
                             </a>
                         </li>
+                        @if (colaboradores.ObterColaborador() != null)
+                        {
+                            if (colaboradores.ObterColaborador().tipoColaborador == TiposColaboradores_Constantes.GERENTE)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Colaborador">
+                                        <span data-feather="users"></span>
+                                        Colaboradores
+                                    </a>
+                                </li>
+                            }
+
+                        }
+
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" asp-controller="Clientes" asp-action="Index">
                                 <span data-feather="users"></span>
                                 Clientes
                             </a>
@@ -172,7 +186,9 @@
 </body>
 </html>
 <script src="/resources/lib/jquery3.3.1/jquery-3.3.1.min.js"></script>
-<script src="~/JS/Action.js"></script>
+<script src="~/resources/lib/Mask/jquery.mask.min.js"></script>
+
+
 <script src="/resources/lib/holder/holder.min.js"></script>
 <script src="/resources/lib/charts/charts.js"></script>
 
@@ -180,3 +196,4 @@
 
 <script src="/resources/lib/popper1.14.6/popper.min.js"></script>
 <script src="/resources/lib/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
+<script src="~/JS/Action.js"></script>

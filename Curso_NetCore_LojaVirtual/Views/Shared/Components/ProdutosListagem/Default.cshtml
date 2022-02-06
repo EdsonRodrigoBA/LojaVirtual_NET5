@@ -1,0 +1,72 @@
+﻿@model ProdutosListagemViewModel;
+@if (Model.Produtos.Count > 0)
+{
+
+
+
+    var pesquisa = Context.Request.Query["pesquisa"];
+    var ordenacao = Context.Request.Query["ordenacao"];
+    var pagina = Context.Request.Query["pagina"];
+    var action = ViewContext.RouteData.Values["action"].ToString();
+
+
+    <div class="container" id="code_prod_complex">
+        <div class="row">
+            <div class="offset-md-10 col-md-2">
+                @*<label>Ordenar por:</label>*@
+                <select asp-items="Model.ordenacao" asp-for="@ordenacao" class="form-control" id="ordenacao" multiple="">
+                </select>
+            </div>
+        </div>
+        <div class="row mt-2">
+            @foreach (var item in Model.Produtos)
+            {
+
+                <a asp-action="Detail" asp-controller="Produtos" asp-route-slug=@item.Id>
+                    <div class="col-md-4">
+                        <figure class="card card-product">
+                            @if (item.Imagens != null && item.Imagens.Count > 0)
+                            {
+                                <div class="img-wrap"><img src="@item.Imagens.ElementAtOrDefault(0).caminho"></div>
+
+                            }
+                            else
+                            {
+                                <div class="img-wrap"><img src="/img/produtoimagem.png"></div>
+                            }
+                            <figcaption class="info-wrap">
+                                <h4 class="title">@item.nome</h4>
+
+                            </figcaption>
+                            <div class="bottom-wrap">
+                                <a asp-action="AdicionarItem" asp-controller="Carrinho" asp-route-id="@item.Id" class="btn btn-sm btn-primary float-right">Comprar</a>
+                                <div class="price-wrap h5">
+                                    <span class="price-new">@item.valor.ToString("C")</span>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
+                </a>
+            }
+        </div>
+
+
+
+
+        @Html.PagedListPager((IPagedList)Model.Produtos, pagina => Url.Action(action, new { pagina = pagina, pesquisa = pesquisa, ordenacao = ordenacao }), new PagedListRenderOptions
+   {
+       //PageClasses = new string[] { "page-link" },
+       //UlElementClasses = new string[] { "pagination" },
+       //LiElementClasses = new string[] { "page-item" },
+       //DisplayItemSliceAndTotal = true,
+   })
+    </div>
+
+}
+else
+{
+    <div class="container">
+
+        <div class="alert alert-info"><b>Ops !!</b> No momento nenhum produto foi encontrado.</div>
+    </div>
+}

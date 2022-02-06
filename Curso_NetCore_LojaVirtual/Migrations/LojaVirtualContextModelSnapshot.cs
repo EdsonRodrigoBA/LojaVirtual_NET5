@@ -30,9 +30,11 @@ namespace Curso_NetCore_LojaVirtual.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("slug")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -51,6 +53,9 @@ namespace Curso_NetCore_LojaVirtual.Migrations
 
                     b.Property<DateTime>("Nascimento")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Situacao")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("cpf")
                         .IsRequired()
@@ -87,12 +92,15 @@ namespace Curso_NetCore_LojaVirtual.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("senha")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("tipoColaborador")
@@ -101,6 +109,26 @@ namespace Curso_NetCore_LojaVirtual.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colaboradores");
+                });
+
+            modelBuilder.Entity("Curso_NetCore_LojaVirtual.Models.Imagens", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("caminho")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("Imagens");
                 });
 
             modelBuilder.Entity("Curso_NetCore_LojaVirtual.Models.NewsLettersEmail", b =>
@@ -119,6 +147,47 @@ namespace Curso_NetCore_LojaVirtual.Migrations
                     b.ToTable("NewsLettersEmail");
                 });
 
+            modelBuilder.Entity("Curso_NetCore_LojaVirtual.Models.Produtos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("altura")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("categoria_id")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("comprimento")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("largura")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("peso")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("categoria_id");
+
+                    b.ToTable("Produtos");
+                });
+
             modelBuilder.Entity("Curso_NetCore_LojaVirtual.Models.Categoria", b =>
                 {
                     b.HasOne("Curso_NetCore_LojaVirtual.Models.Categoria", "CategoriaPai")
@@ -126,6 +195,33 @@ namespace Curso_NetCore_LojaVirtual.Migrations
                         .HasForeignKey("id_categoriapai");
 
                     b.Navigation("CategoriaPai");
+                });
+
+            modelBuilder.Entity("Curso_NetCore_LojaVirtual.Models.Imagens", b =>
+                {
+                    b.HasOne("Curso_NetCore_LojaVirtual.Models.Produtos", "Produtos")
+                        .WithMany("Imagens")
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produtos");
+                });
+
+            modelBuilder.Entity("Curso_NetCore_LojaVirtual.Models.Produtos", b =>
+                {
+                    b.HasOne("Curso_NetCore_LojaVirtual.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("categoria_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("Curso_NetCore_LojaVirtual.Models.Produtos", b =>
+                {
+                    b.Navigation("Imagens");
                 });
 #pragma warning restore 612, 618
         }

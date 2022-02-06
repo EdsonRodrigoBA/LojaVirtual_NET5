@@ -79,11 +79,47 @@ namespace Curso_NetCore_LojaVirtual.Bibliotecas.Lang {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Quantidade solicitada maior que o estoque disponivel no momento. .
+        /// </summary>
+        public static string MSG_ESTOQUE_IDISPONIVEL {
+            get {
+                return ResourceManager.GetString("MSG_ESTOQUE_IDISPONIVEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Quantidade Inválida..
+        /// </summary>
+        public static string MSG_ESTOQUE_NEGATIVO {
+            get {
+                return ResourceManager.GetString("MSG_ESTOQUE_NEGATIVO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Soclitação realizada com sucesso..
         /// </summary>
         public static string MSG_SUCESSO {
             get {
                 return ResourceManager.GetString("MSG_SUCESSO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Soclitação realizada com sucesso. Enviamos uma mensagem para o E-mail Informado..
+        /// </summary>
+        public static string MSG_SUCESSO_EMAIL {
+            get {
+                return ResourceManager.GetString("MSG_SUCESSO_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Não foi selecionado o tipo de frete para envio dos produtos selecionados..
+        /// </summary>
+        public static string MSG_TIPOFRETEENVIO {
+            get {
+                return ResourceManager.GetString("MSG_TIPOFRETEENVIO", resourceCulture);
             }
         }
     }

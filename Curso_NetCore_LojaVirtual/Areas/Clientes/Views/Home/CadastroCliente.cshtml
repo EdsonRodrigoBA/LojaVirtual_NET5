@@ -1,0 +1,106 @@
+﻿
+@model Clientes;
+    <div class="container">
+
+    </div>
+    <form  method="post">
+        <main role="main">
+
+            <section class="container" style="margin-top: 50px">
+                <div class="row">
+                    <aside class="col-md-6 offset-3">
+                        <h3 class="subtitle-doc">
+                            Cadastre-se
+
+                        </h3>
+                        <div id="code_register_1">
+                            <div class="card">
+                                <header class="card-header">
+                                    <a asp-action="Login" asp-controller="Home"  class="float-right btn btn-outline-primary mt-1">Entrar</a>
+                                    <h4 class="card-title mt-2">Fazer Login</h4>
+                                </header>
+                                <article class="card-body">
+                                    @if (TempData["MSG_SUCESSO"] != null)
+                                    {
+                                        <p class="alert alert-success">@TempData["MSG_SUCESSO"]</p>
+                                    }
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label asp-for="nome">Nome</label>
+                                            <input type="text" class="form-control" asp-for="nome" placeholder="Nome">
+                                            <span class="text-danger" asp-validation-for="nome">  </span>
+                                        </div>
+                                        <div class="col form-group">
+                                            <label asp-for="Nascimento">Nascimento</label>
+                                            <input type="text" class="form-control" asp-for="Nascimento" placeholder="">
+                                            <span class="text-danger" asp-validation-for="Nascimento">  </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col form-group">
+                                            <label asp-for="Nascimento">CPF</label>
+                                            <input type="text" class="form-control" asp-for="cpf" placeholder="Nome">
+                                            <span class="text-danger" asp-validation-for="cpf">  </span>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" asp-for="sexo" value="Masculino">
+                                            <span class="form-check-label"> Masculino </span>
+                                            <span class="text-danger" asp-validation-for="sexo">  </span>
+
+                                        </label>
+                                        <label class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" asp-for="sexo" value="Feminino">
+                                            <span class="form-check-label"> Feminino</span>
+                                            <span class="text-danger" asp-validation-for="sexo">  </span>
+
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="telefone">Telefone</label>
+                                        <input type="tel" asp-for="telefone" class="form-control" placeholder="">
+                                        <span class="text-danger" asp-validation-for="telefone">  </span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="email">Email</label>
+                                        <input type="email" asp-for="email" class="form-control" placeholder="">
+                                        <span class="text-danger" asp-validation-for="email">  </span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="senha">Senha</label>
+                                        <input class="form-control" asp-for="senha" type="password">
+                                        <span class="text-danger" asp-validation-for="senha">  </span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="confirmPassword">Confirmar Senha</label>
+                                        <input class="form-control" asp-for="confirmPassword" type="password">
+                                        <span class="text-danger" asp-validation-for="confirmPassword">  </span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block"> Registrar </button>
+                                    </div>
+
+                                </article>
+                                <div class="border-top card-body text-center">Possui uma conta? <a asp-action="Login" asp-controller="Home">Realizar Login</a></div>
+                            </div>
+
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+
+
+            <hr class="featurette-divider">
+
+        </main>
+   </form>

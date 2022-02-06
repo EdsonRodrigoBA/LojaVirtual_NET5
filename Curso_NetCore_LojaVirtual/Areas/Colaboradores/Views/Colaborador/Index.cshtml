@@ -1,6 +1,6 @@
 ﻿@model X.PagedList.IPagedList<Colaboradores>
 
-<h5>Colaboradores</h5>
+<h5 style="color: red">Colaboradores</h5>
 <a asp-action="Cadastrar" class="btn btn-primary">Cadastrar</a>
 @if (Model.Count > 0)
 {
@@ -17,6 +17,7 @@
                 <tr>
                     <th scope="col">Codigo</th>
                     <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
 
                     <th scope="col">Ações</th>
                 </tr>
@@ -25,23 +26,24 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <th scope="row">@item.Id</th>
-                        <td>@item.nome</td>
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.nome</td>
+                    <td>@item.email</td>
 
 
 
 
 
-                        <td>
-                            <a asp-action="GerarSenha" asp-route-id="@item.Id" class="btn btn-sm btn-success ">Gerar Senha</a> ||
+                    <td>
+                        <a asp-action="GerarSenha" asp-route-id="@item.Id" class="btn btn-sm btn-success ">Gerar Senha</a> ||
 
-                            <a asp-action="Atualizar" asp-route-id="@item.Id" class="btn btn-sm btn-secondary">Atualizar</a> ||
+                        <a asp-action="Atualizar" asp-route-id="@item.Id" class="btn btn-sm btn-secondary">Atualizar</a> ||
 
-                            <a asp-action="Excluir" asp-route-id="@item.Id" class="btn btn-sm btn-danger btn-excluir">Excluir</a>
+                        <a asp-action="Excluir" asp-route-id="@item.Id" class="btn btn-sm btn-danger btn-excluir">Excluir</a>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 }
 
 

@@ -1,6 +1,7 @@
 ﻿using Curso_NetCore_LojaVirtual.DataBase;
 using Curso_NetCore_LojaVirtual.Models;
 using Curso_NetCore_LojaVirtual.Repositorios.Contratos;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,18 @@ namespace Curso_NetCore_LojaVirtual.Repositorios
         public void Atualizar(Colaboradores model)
         {
             _BD.Colaboradores.Update(model);
+            _BD.Entry(model).Property(x => x.senha).IsModified = false;
+
+            _BD.SaveChanges();
+        }
+
+        public void AtualizarSenha(Colaboradores model)
+        {
+            _BD.Colaboradores.Update(model);
+            _BD.Entry(model).Property(x => x.nome).IsModified = false;
+            _BD.Entry(model).Property(x => x.tipoColaborador).IsModified = false;
+            _BD.Entry(model).Property(x => x.email).IsModified = false;
+
             _BD.SaveChanges();
         }
 
@@ -56,6 +69,11 @@ namespace Curso_NetCore_LojaVirtual.Repositorios
             int numeroPagina = pagina ?? 1;
 
             return _BD.Colaboradores.ToPagedList(numeroPagina, _iconfiguration.GetValue<int>("Numero_RegisroPaginacao"));
+        }
+
+        public List<Colaboradores> Get_Por_Email(string email)
+        {
+            return _BD.Colaboradores.AsNoTracking().Where(x => x.email == email).ToList();
         }
 
         public Colaboradores Login(string email, string senha)

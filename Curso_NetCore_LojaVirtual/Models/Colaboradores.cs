@@ -1,4 +1,5 @@
 ﻿using Curso_NetCore_LojaVirtual.Bibliotecas.Lang;
+using Curso_NetCore_LojaVirtual.Bibliotecas.Validacao;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,6 +17,7 @@ namespace Curso_NetCore_LojaVirtual.Models
         public String nome { get; set; }
         [Required(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_ERROR_01")]
 
+        [EmailUnicoAttribute]
         public String email { get; set; }
         [Required(ErrorMessageResourceType = typeof(Mensagens), ErrorMessageResourceName = "MSG_ERROR_01")]
 

@@ -16,8 +16,11 @@ namespace Curso_NetCore_LojaVirtual.Repositorios.Contratos
         void Excluir(int Id);
 
         Categoria Get(int id);
+        Categoria Get(string slug);
+
         List<Categoria> GetTodos();
 
         IPagedList<Categoria> Get(int? pagina);
+        IEnumerable<Categoria> Get_CategoriasRecursiva( Categoria categoriaPrincipal);
     }
 }
